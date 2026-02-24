@@ -11,3 +11,7 @@ export const load: PageLoad = ({ params }) => {
 
 	return { part };
 };
+
+export const entries = () => {
+	return parts.map(part => ({ id: part.id }));
+};
