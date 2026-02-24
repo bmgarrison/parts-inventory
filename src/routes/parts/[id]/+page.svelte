@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { PageData } from './$types';
+	import { base } from '$app/paths';
 
 	export let data: PageData;
 	const { part } = data;
@@ -11,16 +12,16 @@
 
 <div class="container">
 	<div class="header-bar">
-		<a href="/" class="logo-link">
-			<img src="/primo-logo.svg" alt="Primo Parts Garage" class="logo" />
+		<a href="{base}/" class="logo-link">
+			<img src="{base}/primo-logo.svg" alt="Primo Parts Garage" class="logo" />
 		</a>
-		<a href="/" class="back-link">← Back to Inventory</a>
+		<a href="{base}/" class="back-link">← Back to Inventory</a>
 	</div>
 
 	<div class="detail-card">
 		<div class="detail-image">
 			{#if part.image}
-				<img src={part.image} alt={part.name} />
+				<img src={base + part.image} alt={part.name} />
 			{:else}
 				<div class="no-image">
 					<div class="no-image-text">
@@ -69,7 +70,7 @@
 			<h3>Tags</h3>
 			<div class="tags">
 				{#each part.tags as tag}
-					<a href="/?tags={encodeURIComponent(tag)}" class="tag">{tag}</a>
+					<a href="{base}/?tags={encodeURIComponent(tag)}" class="tag">{tag}</a>
 				{/each}
 			</div>
 		</div>

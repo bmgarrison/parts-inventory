@@ -2,6 +2,7 @@
 	import { parts } from '$lib/data';
 	import type { Part } from '$lib/types';
 	import { page } from '$app/stores';
+	import { base } from '$app/paths';
 
 	let searchQuery = '';
 	let selectedSeries = '';
@@ -94,7 +95,7 @@
 		if (selectedTags.length > 0) params.set('tags', selectedTags.join(','));
 		if (sortBy !== 'newest') params.set('sort', sortBy);
 		
-		const newUrl = params.toString() ? `/?${params.toString()}` : '/';
+		const newUrl = params.toString() ? `${base}/?${params.toString()}` : `${base}/`;
 		window.history.pushState({}, '', newUrl);
 	}
 
@@ -157,7 +158,7 @@
 <div class="container">
 	<header>
 		<div class="logo-container">
-			<img src="/primo-logo.svg" alt="Primo Parts Garage" class="logo" />
+			<img src="{base}/primo-logo.svg" alt="Primo Parts Garage" class="logo" />
 		</div>
 		<h1>Primo Parts Garage</h1>
 		<p>Quality used Honda performance parts at great prices</p>
@@ -325,10 +326,10 @@
 
 	<div class="parts-grid">
 		{#each sortedParts as part (part.id)}
-			<a href="/parts/{part.id}" class="part-card">
+			<a href="{base}/parts/{part.id}" class="part-card">
 				<div class="part-image">
 					{#if part.image}
-						<img src={part.image} alt={part.name} />
+						<img src={base + part.image} alt={part.name} />
 					{:else}
 						<div class="no-image">
 							<div class="no-image-text">
